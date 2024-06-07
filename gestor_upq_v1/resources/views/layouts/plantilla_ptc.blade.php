@@ -8,7 +8,7 @@
     
     <!----======== CSS ======== -->
     <link rel="stylesheet" href="{{asset('css/plantilla.css')}}">
-     
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.0.0/dist/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
     <!----===== Iconscout CSS ===== -->
     <link rel="stylesheet" href="https://unicons.iconscout.com/release/v4.0.0/css/line.css">
     <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
@@ -24,6 +24,7 @@
 
             <span class="logo_name">Gestor UPQ</span>
         </div>
+        <br>
         <div class="menu-items">
             <ul class="nav-links">
                 <li><a href="/dashboard">
@@ -50,6 +51,10 @@
                     <i class="uil uil-flask"></i>
                     <span class="link-name">Gestión</span>
                 </a></li>
+                <li><a href="/biblioteca">
+                    <i class="uil uil-book-alt"></i>
+                    <span class="link-name">Biblioteca</span>
+                </a></li>
             </ul>
             <ul class="user-data">
                 <div class="user">
@@ -59,12 +64,9 @@
                     <br> 
                     Fecha Actual: 
                     <br> 
-                    Hora Actual:
-                    
+                    Hora Actual:        
                 </div>
             </ul> 
-           
-
             <ul class="logout-mode">
                 @auth
                 <li>
@@ -81,3 +83,5 @@
             
         </div>
     </nav>
+    @yield('content')
+</body>

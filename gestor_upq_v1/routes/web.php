@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\ProfileController;
+use App\Http\Controllers\DocumentoController;
 use Illuminate\Support\Facades\Route;
 
 Route::get('/', function () {
@@ -10,6 +11,10 @@ Route::get('/', function () {
 Route::get('/dashboard', function () {
     return view('dashboard');
 })->middleware(['auth', 'verified'])->name('dashboard');
+
+Route::get('/biblioteca', [DocumentoController::class, 'index'])
+    ->middleware(['auth', 'verified'])
+    ->name('biblioteca');
 
 Route::get('/gestion', function () {
     return view('gestion');
@@ -30,6 +35,12 @@ Route::get('/perfil', function () {
 Route::get('/docencia', function () {
     return view('docencia');
 })->middleware(['auth', 'verified'])->name('Docencia');
+
+Route::middleware(['auth'])->group(function () {
+    Route::post('/documentos', [DocumentoController::class, 'store'])->name('documentos.store');
+});
+
+Route::get('/documentos', [DocumentoController::class, 'index'])->name('documentos.index');
 
 Route::middleware('auth')->group(function () {
     Route::get('/profile', [ProfileController::class, 'edit'])->name('profile.edit');

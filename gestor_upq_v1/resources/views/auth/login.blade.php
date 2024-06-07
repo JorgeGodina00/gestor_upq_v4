@@ -1,47 +1,88 @@
-<x-guest-layout>
-    <!-- Session Status -->
-    <x-auth-session-status class="mb-4" :status="session('status')" />
+<!doctype html>
+<html lang="en">
+    <head>
+        <title>UPQ Intranet</title>
+        <!-- Required meta tags -->
+        <meta charset="utf-8" />
+        <meta
+            name="viewport"
+            content="width=device-width, initial-scale=1, shrink-to-fit=no"
+        />
 
-    <form method="POST" action="{{ route('login') }}">
-        @csrf
+        <!-- Bootstrap CSS v5.2.1 -->
+        <link
+            href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css"
+            rel="stylesheet"
+            integrity="sha384-T3c6CoIi6uLrA9TneNEoa7RxnatzjcDSCmG1MXxSR1GAsXEV/Dwwykc2MPK8M2HN"
+            crossorigin="anonymous"
+        />
+        <link rel="stylesheet" href="{{asset('css/login.css')}}">
+    </head>
 
-        <!-- Email Address -->
-        <div>
-            <x-input-label for="email" :value="__('Email')" />
-            <x-text-input id="email" class="block mt-1 w-full" type="email" name="email" :value="old('email')" required autofocus autocomplete="username" />
-            <x-input-error :messages="$errors->get('email')" class="mt-2" />
-        </div>
+    <body>
+        <section class="h-100 gradient-form" style="background-color: #eee;">
+            <div class="container py-5 h-100">
+              <div class="row d-flex justify-content-center align-items-center h-100">
+                <div class="col-xl-10">
+                  <div class="card rounded-3 text-black">
+                    <div class="row g-0">
+                      <div class="col-lg-6">
+                        <div class="card-body p-md-5 mx-md-4">
+          
+                          <div class="text-center">
+                            <img src="{{asset('assets/logo.png')}}"
+                              style="width: 185px;" alt="logo">
+                            <h4 class="mt-1 mb-5 pb-1">UPQ Intranet</h4>
+                          </div>
+          
+                          <form action="{{route('login')}}" method="post">
+                            @csrf
+                            <center><p>Ingresar Correo y Contraseña</p></center>
+                            <br>
+                            <div class="form-outline mb-4">
+                              <label class="form-label" for="form2Example11">Correo de Usuario</label>
+                              <input type="email" id="form2Example11" class="form-control" placeholder="Correo Electronico" name="email"/>
+                            </div>
+          
+                            <div class="form-outline mb-4">
+                              <label class="form-label" for="form2Example22">Contraseña de Usuario</label>
+                              <input type="password" id="form2Example22" class="form-control" name = "password"/>
+                            </div>
+          
+                            <div class="text-center pt-1 mb-5 pb-1">
+                              <button class="btn btn-primary btn-block fa-lg gradient-custom-2 mb-3" type="submit">Iniciar Sesion</button>
+                              <br>
+                              <center> <a class="text-muted" href="#!">Recordar Contraseña</a> </center>
+                            </div>         
+                          </form>
+          
+                        </div>
+                      </div>
+                      <div class="col-lg-6 d-flex align-items-center gradient-custom-2">
+                            <div class="img-container">
+                                <img src="{{asset('assets/GALERIA_1.png')}}" class="img-fluid" alt="Sample image">
+                            </div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </section>
+        <footer>
+            <!-- place footer here -->
+        </footer>
+        <!-- Bootstrap JavaScript Libraries -->
+        <script
+            src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.8/dist/umd/popper.min.js"
+            integrity="sha384-I7E8VVD/ismYTF4hNIPjVp/Zjvgyol6VFvRkX/vR+Vc4jQkC+hVqc2pM8ODewa9r"
+            crossorigin="anonymous"
+        ></script>
 
-        <!-- Password -->
-        <div class="mt-4">
-            <x-input-label for="password" :value="__('Password')" />
-
-            <x-text-input id="password" class="block mt-1 w-full"
-                            type="password"
-                            name="password"
-                            required autocomplete="current-password" />
-
-            <x-input-error :messages="$errors->get('password')" class="mt-2" />
-        </div>
-
-        <!-- Remember Me -->
-        <div class="block mt-4">
-            <label for="remember_me" class="inline-flex items-center">
-                <input id="remember_me" type="checkbox" class="rounded border-gray-300 text-indigo-600 shadow-sm focus:ring-indigo-500" name="remember">
-                <span class="ms-2 text-sm text-gray-600">{{ __('Remember me') }}</span>
-            </label>
-        </div>
-
-        <div class="flex items-center justify-end mt-4">
-            @if (Route::has('password.request'))
-                <a class="underline text-sm text-gray-600 hover:text-gray-900 rounded-md focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500" href="{{ route('password.request') }}">
-                    {{ __('Forgot your password?') }}
-                </a>
-            @endif
-
-            <x-primary-button class="ms-3">
-                {{ __('Log in') }}
-            </x-primary-button>
-        </div>
-    </form>
-</x-guest-layout>
+        <script
+            src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.min.js"
+            integrity="sha384-BBtl+eGJRgqQAUMxJ7pMwbEyER4l1g+O15P+16Ep7Q9Q+zqX6gSbd85u4mG4QzX+"
+            crossorigin="anonymous"
+        ></script>
+    </body>
+</html>

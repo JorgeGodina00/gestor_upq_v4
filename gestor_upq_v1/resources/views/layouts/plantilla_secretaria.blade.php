@@ -25,26 +25,10 @@
         </div>
         <br>
         <div class="menu-items">
-            <ul class="nav-links">
-                <li><a href="/dashboard">
-                    <i class="uil uil-estate"></i>
-                    <span class="link-name">Inicio</span>
-                </a></li>
-                <li><a href="/perfil">
-                    <i class="uil uil-user"></i>
-                    <span class="link-name">Perfil</span>   
-                </a></li>                
-                <li><a href="/tutoria">
-                    <i class="uil uil-graduation-cap"></i>
-                    <span class="link-name">Tutoría</span>
-                </a></li>
+            <ul class="nav-links">        
                 <li><a href="/docencia">
                     <i class="uil uil-book-open"></i>
                     <span class="link-name">Docencia</span>
-                </a></li>
-                <li><a href="/investigacion">
-                    <i class="uil uil-notes"></i>
-                    <span class="link-name">Investigación</span>
                 </a></li>
                 <li><a href="/gestion">
                     <i class="uil uil-flask"></i>

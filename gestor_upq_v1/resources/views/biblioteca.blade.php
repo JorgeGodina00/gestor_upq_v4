@@ -4,7 +4,7 @@
 @section('content')
 <div class="container mt-5">
     <center>
-        <h1>Documentos</h1>
+        <h1>Biblioteca de Documentos</h1>
         
         <!-- Formulario de búsqueda -->
         <form method="GET" action="">
@@ -14,7 +14,7 @@
                     <input type="text" class="form-control" id="clave_profesor" name="clave_profesor" placeholder="Clave Profesor">
                 </div>
                 <div class="col-auto">
-                    <label class="sr-only" for="clave_categoria">Categoría</label>
+                    <label class="sr-only" for "clave_categoria">Categoría</label>
                     <input type="text" class="form-control" id="clave_categoria" name="clave_categoria" placeholder="Categoría">
                 </div>
                 <div class="col-auto">
@@ -40,7 +40,6 @@
                         <th>Nombre Archivo</th>
                         <th>Fecha Creación</th>
                         <th>Fecha Modificación</th>
-                        <th>Ubicación Archivo</th>
                         <th>Acciones</th>
                     </tr>
                 </thead>
@@ -56,7 +55,6 @@
                         <td>{{ $documento->nombre_archivo }}</td>
                         <td>{{ $documento->fecha_creacion }}</td>
                         <td>{{ $documento->fecha_modificacion }}</td>
-                        <td>{{ $documento->ubicacion_archivo }}</td>
                         <td>
                             <!-- Botón de actualizar -->
                             <a href="#" class="btn btn-primary btn-sm">Actualizar</a>
@@ -74,11 +72,4 @@
 <br>
 <br>
 <br>
-
-<footer class="footer bg-dark text-white text-center py-3">
-    <div class="container">
-        <p>&copy; 2024 UPQ. Todos los derechos reservados.</p>
-    </div>
-</footer>
-
 @endsection

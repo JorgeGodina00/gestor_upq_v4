@@ -25,15 +25,6 @@
         </div>
         <br>
         <div class="menu-items">
-            <ul class="nav-links">        
-                <li><a href="/docencia">
-                    <i class="uil uil-book-open"></i>
-                    <span class="link-name">Docencia</span>
-                </a></li>
-                <li><a href="/gestion">
-                    <i class="uil uil-flask"></i>
-                    <span class="link-name">Gestión</span>
-                </a></li>
                 <li><a href="/biblioteca">
                     <i class="uil uil-book-alt"></i>
                     <span class="link-name">Biblioteca</span>

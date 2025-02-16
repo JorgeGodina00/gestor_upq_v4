@@ -1,6 +1,7 @@
 <!doctype html>
 <html lang="en">
 <head>
+    
     <title>UPQ Intranet</title>
     <!-- Required meta tags -->
     <meta charset="utf-8" />
@@ -17,6 +18,8 @@
         crossorigin="anonymous"
     />
     <link rel="stylesheet" href="{{asset('css/login.css')}}">
+    <link rel="icon" href="{{ asset('assets/logo.png') }}" type="image/x-icon" />
+
 </head>
 
 <body>
@@ -52,7 +55,7 @@
                                         <div class="text-center pt-1 mb-5 pb-1">
                                             <button class="btn btn-primary btn-block fa-lg gradient-custom-2 mb-3" type="submit">Iniciar Sesion</button>
                                             <br>
-                                            <center> <a class="text-muted" href="#!">Recordar Contraseña</a> </center>
+                                           
                                         </div>         
                                     </form>
 

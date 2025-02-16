@@ -5,6 +5,9 @@ namespace App\Http\Controllers;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Http\Request;
 use App\Models\Documento;
+use App\Http\Controllers\Controller;
+use Illuminate\Support\Facades\Redirect;
+
 
 class DocumentoController extends Controller
 {
@@ -19,10 +22,16 @@ class DocumentoController extends Controller
 
     public function store(Request $request)
     {
+        // Verificar si el usuario es un PTC
+        if (Auth::user()->rusertype !== 'profesor') {
+            return redirect()->back()->with('error', 'No tienes permiso para subir documentos.');
+        }
+
         // Validación de datos
         $request->validate([
             'subcategory' => 'required',
             'evidence' => 'required|file',
+            'category' => 'required|in:docencia,investigacion,gestion',
         ]);
 
         // Mapeo de las subcategorías a sus claves
@@ -53,12 +62,26 @@ class DocumentoController extends Controller
             'patente' => 'pat',
         ];
 
+        // Mapeo de las subcategorías de gestión a sus claves
+        $subcategoriaClavesGestion = [
+            'gestion_programa_educativo' => 'gpe',
+            'gestion_institucional' => 'otr',
+            'creacion_actualizacion_programas_educativos' => 'ape',
+            'cuerpo_academico_formacion_miembros' => 'mfo',
+            'direccion_coordinacion_supervision' => 'dcs',
+            'evento_academico_externo' => 'eae',
+            'evento_academico_internacional' => 'pin',
+            'cippra' => 'cip',
+        ];
+
         // Determinar la clave de la subcategoría según la categoría
         $category = $request->input('category');
         if ($category == 'docencia') {
             $clave_subcategoria = $subcategoriaClavesDocencia[$request->input('subcategory')] ?? 'default';
         } elseif ($category == 'investigacion') {
             $clave_subcategoria = $subcategoriaClavesInvestigacion[$request->input('subcategory')] ?? 'default';
+        } elseif ($category == 'gestion') {
+            $clave_subcategoria = $subcategoriaClavesGestion[$request->input('subcategory')] ?? 'default';
         } else {
             $clave_subcategoria = 'default';
         }
@@ -70,7 +93,7 @@ class DocumentoController extends Controller
         $clave_profesor = auth()->user()->id;
 
         // Generar nombre de archivo según la codificación requerida
-        $fileName = $clave_profesor . '_' . $periodo . '-IN-' . $clave_subcategoria . '_' . (Documento::max('consecutivo') + 1) . '_' . time();
+        $fileName = $clave_profesor . '_' . $periodo . '-IN-' . $clave_subcategoria . '_' . (Documento::max('consecutivo') + 1);
 
         // Subida del archivo
         $file = $request->file('evidence');
@@ -80,7 +103,7 @@ class DocumentoController extends Controller
         $documento = new Documento();
         $documento->clave_profesor = auth()->user()->id;
         $documento->periodo = $periodo;
-        $documento->clave_categoria = strtoupper($request->input('category'));
+        $documento->clave_categoria = strtoupper($category);
         $documento->clave_subcategoria = $clave_subcategoria;
         $documento->consecutivo = Documento::max('consecutivo') + 1;
         $documento->nombre_archivo = $fileName;

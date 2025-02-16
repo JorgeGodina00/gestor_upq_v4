@@ -102,7 +102,11 @@
         <!-- Botón de inicio de sesión -->
         <a href="/login" class="btn btn-login">Iniciar Sesión<i class="uil uil-signin"></i></a>
     </div>
-
+    <!-- Imagen centrada y original -->
+    <div class="text-center">
+        <img src="{{asset('assets/UPQ.jpeg')}}" alt="Descripción de la imagen" style="max-width: 100%; height: auto;">
+    </div>
+    <br>
     <!-- Pie de página -->
     <footer class="footer bg-dark text-white text-center py-3">
         <div class="container">

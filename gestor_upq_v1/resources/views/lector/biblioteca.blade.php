@@ -1,5 +1,5 @@
 @extends('layouts.plantilla_ptc')
-@section('title', 'Página de Contenido')
+@section('title', 'Biblioteca de Documentos')
 
 @section('content')
 <div class="container mt-5">
@@ -11,15 +11,15 @@
             <div class="form-row align-items-center mb-3">
                 <div class="col-auto">
                     <label class="sr-only" for="clave_profesor">Clave Profesor</label>
-                    <input type="text" class="form-control" id="clave_profesor" name="clave_profesor" placeholder="Clave Profesor">
+                    <input type="text" class="form-control" id="clave_profesor" name="clave_profesor" placeholder="Clave Profesor" value="{{ request('clave_profesor') }}">
                 </div>
                 <div class="col-auto">
-                    <label class="sr-only" for "clave_categoria">Categoría</label>
-                    <input type="text" class="form-control" id="clave_categoria" name="clave_categoria" placeholder="Categoría">
+                    <label class="sr-only" for="clave_categoria">Categoría</label>
+                    <input type="text" class="form-control" id="clave_categoria" name="clave_categoria" placeholder="Categoría" value="{{ request('clave_categoria') }}">
                 </div>
                 <div class="col-auto">
                     <label class="sr-only" for="clave_subcategoria">Subcategoría</label>
-                    <input type="text" class="form-control" id="clave_subcategoria" name="clave_subcategoria" placeholder="Subcategoría">
+                    <input type="text" class="form-control" id="clave_subcategoria" name="clave_subcategoria" placeholder="Subcategoría" value="{{ request('clave_subcategoria') }}">
                 </div>
                 <div class="col-auto">
                     <button type="submit" class="btn btn-primary">Buscar</button>
@@ -56,9 +56,6 @@
                         <td>{{ $documento->fecha_creacion }}</td>
                         <td>{{ $documento->fecha_modificacion }}</td>
                         <td>
-                            <!-- Botón de actualizar -->
-                            <a href="#" class="btn btn-primary btn-sm">Actualizar</a>
-
                             <!-- Botón de descargar archivo -->
                             <a href="{{ asset($documento->ubicacion_archivo) }}" class="btn btn-success btn-sm" download>Descargar</a>
                         </td>
@@ -67,9 +64,21 @@
                 </tbody>
             </table>
         </div>
+
+        <!-- Navegación -->
+        <div class="d-flex justify-content-between mt-4">
+            @if ($documentos->currentPage() > 1)
+                <a href="{{ $documentos->previousPageUrl() }}" class="btn btn-secondary">Anterior</a>
+            @else
+                <span class="btn btn-secondary disabled">Anterior</span>
+            @endif
+
+            @if ($documentos->hasMorePages())
+                <a href="{{ $documentos->nextPageUrl() }}" class="btn btn-secondary">Siguiente</a>
+            @else
+                <span class="btn btn-secondary disabled">Siguiente</span>
+            @endif
+        </div>
     </center>
 </div>
-<br>
-<br>
-<br>
 @endsection
